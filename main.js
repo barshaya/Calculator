@@ -28,7 +28,9 @@ let calcKeys=[
     ['RESET','=']
 ];
 
-var ioScreen;
+var ioScreen, result=0;
+const operators=['+','-','/','X'];
+const params=[];
 
 function init (){
     let html=``;
@@ -57,7 +59,13 @@ function addClickListeners(){
 }
 
 function showInput(e){
-    ioScreen.value+=(e.target.outerText);
+    let char=e.target.outerText;
+    ioScreen.value+=char;
+    if(operators.includes(char)){
+        params[0]= parseInt(ioScreen.value);
+        params[1]=char;
+        ioScreen.value='';
+    }
 }
 
 function resetCalc(){
@@ -70,7 +78,23 @@ function deleteCalc(){
 }
 
 function resultCalc(){
-    console.log('result');
+    params[2]= parseInt(ioScreen.value);
+    switch(params[1]){
+        case '+':
+            result=params[0]+params[2];
+            break;
+        case '-':
+            result=params[0]-params[2];
+            break;
+        case 'X':
+            result=params[0]*params[2];
+            break;
+        case '/':
+            result=params[0]/params[2];   
+            break;        
+    }
+    params[1]+=result;
+    ioScreen.value=result;
 }
 
 init();

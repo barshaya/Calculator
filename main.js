@@ -98,3 +98,4 @@ function resultCalc(){
 }
 
 init();
+

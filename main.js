@@ -1,4 +1,4 @@
-const table= document.getElementById('calcTable');
+const calcTable= document.querySelector('.calcTable');
 const map={
     0: 'zero',
     1: 'one' ,
@@ -28,57 +28,68 @@ let calcKeys=[
     ['RESET','=']
 ];
 
-var ioScreen, result=0;
+var calcIO,oldIO, result=0;
 const operators=['+','-','/','X'];
 const params=[];
 
 function init (){
     let html=``;
     calcKeys.forEach(row => {
-        let rowHTML='<tr>';
-        row.forEach(key => (rowHTML+= `<td><button id=${map[key]} class='btn' value='${key}'> ${key} </button></td>`))
-        rowHTML+= '</tr>';
+        let rowHTML='<div class="row">';
+        row.forEach(key => (rowHTML+= `<button id='${map[key]}' class='btn ${map[key]}' value='${key}'> ${key} </button>`))
+        rowHTML+= '</div>';
         html+=rowHTML;
     });
-    table.innerHTML=html;
+    calcTable.innerHTML=html;
     addClickListeners();
 }
 
 function addClickListeners(){
-    ioScreen=document.getElementById('calcInput');
-    ioScreen.value='';
-    var keys=[...document.getElementsByClassName('btn')];
+    calcIO=document.querySelector('.calcIO');
+    oldCalcIO=document.querySelector('.oldCalcIO')
+    calcIO.innerHTML='';
+    var keys=[...document.querySelectorAll('.btn')];
     keys.forEach(key =>{
-        if(key.id!='reset' && key.id!='delete' && key.id!='equal'){
-            key.addEventListener('click',showInput);
-        }
+        switch(key.id){
+            case 'reset':
+                key.addEventListener('click',resetCalc);
+                break;
+            case 'delete': 
+                key.addEventListener('click',deleteCalc);
+                break;
+            case 'equal':
+                key.addEventListener('click',resultCalc);
+                break;
+            default:
+                key.addEventListener('click',showInput);
+        }   
     })
-    document.getElementById('reset').addEventListener('click',resetCalc);
-    document.getElementById('delete').addEventListener('click',deleteCalc);
-    document.getElementById('equal').addEventListener('click',resultCalc);
 }
 
 function showInput(e){
     let char=e.target.outerText;
-    ioScreen.value+=char;
-    if(operators.includes(char)){
-        params[0]= parseInt(ioScreen.value);
+    calcIO.innerHTML+=char;
+    if(operators.includes(char) && params[1]==undefined){
+        params[0]= parseFloat(calcIO.innerHTML);
         params[1]=char;
-        ioScreen.value='';
+        oldCalcIO.innerHTML=calcIO.innerHTML;
+        calcIO.innerHTML='';
     }
 }
 
 function resetCalc(){
-    ioScreen.value='';
+    calcIO.innerHTML='';
+    params.length=0;
 }
 
 function deleteCalc(){
-    var val=ioScreen.value;
-    ioScreen.value=  (val).substring(0,val.length-1);
+    var val=calcIO.innerHTML;
+    calcIO.innerHTML=(val).substring(0,val.length-1);
 }
 
 function resultCalc(){
-    params[2]= parseInt(ioScreen.value);
+    if(params[0]==undefined || params[1]==undefined) return;
+    params[2]= parseFloat(calcIO.innerHTML);
     switch(params[1]){
         case '+':
             result=params[0]+params[2];
@@ -93,8 +104,10 @@ function resultCalc(){
             result=params[0]/params[2];   
             break;        
     }
-    params[1]+=result;
-    ioScreen.value=result;
+    params[0]=result;
+    params[1]=undefined;
+    oldCalcIO.innerHTML='';
+    calcIO.innerHTML=result;
 }
 
 init();

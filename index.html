@@ -1,39 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  <link href="css/theme1.css" rel="stylesheet">
-  <title>Frontend Mentor | Calculator app</title>
-</head>
-<body>
-  <div class="container">
-    <div class="header">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link href="css/index.css" rel="stylesheet" />
+    <title>Frontend Mentor | Calculator app</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
         <h1 class="header-calc">calc</h1>
-        <div class="header-theme">
-          <h6>THEME</h6>
-          <div class="choose-theme">
-            <input id="theme1" type="radio" value="0" name="theme" checked>
-            <label for="theme1">1</label>
-            
-            <input id="theme2" type="radio" value="1" name="theme">
-            <label for="theme2">2</label>
-            
-            <input id="theme3" type="radio" value="2" name="theme">
-            <label for="theme3">3</label>
-          </div>
+      </div>
+      <div class="calc">
+        <div class="calcScreen">
+          <p class="oldCalcIO"></p>
+          <p class="calcIO"></p>
         </div>
+        <div class="calcTable"></div>
+      </div>
     </div>
-
-    <div class="calcScreen">
-      <p class="oldCalcIO"></p>
-      <p class="calcIO"></p>
-    </div>
-
-    <div class="calcTable">
-    </div>
-  </div>
-</body>
-<script src='main.js'></script>
+  </body>
+  <script src="main.js"></script>
 </html>

@@ -79,6 +79,7 @@ function showInput(e){
 
 function resetCalc(){
     calcIO.innerHTML='';
+    oldCalcIO.innerHTML='';
     params.length=0;
 }
 

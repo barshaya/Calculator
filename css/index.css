@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@700&display=swap');
 :root{
-    --very-dark-desaturated-blue: hsl(222, 26%, 31%);
-    --very-dark-desaturated-blue: hsl(223, 31%, 20%);
-    --very-dark-desaturated-blue: hsl(224, 36%, 15%);
-    --light-grayish-orange: hsl(30, 25%, 89%);
-    --grayish-orange: hsl(28, 16%, 65%); 
-    --desaturated-dark-blue: hsl(225, 21%, 49%);
-    --desaturated-dark-blue: hsl(224, 28%, 35%);
-    --red: hsl(6, 63%, 50%);
-    --dark-red: hsl(6, 70%, 34%);
+    --calc-body: hsl(222, 26%, 31%);
+    --calc-table: hsl(223, 31%, 20%);
+    --calc-screen: hsl(224, 36%, 15%);
+    --key-background: hsl(30, 25%, 89%);
+    --key-background-shadow: hsl(28, 16%, 65%); 
+    --key-remove: hsl(225, 21%, 49%);
+    --key-remove-shadow: hsl(224, 28%, 35%);
+    --key-equal: hsl(6, 63%, 50%);
+    --key-equal-shadow: hsl(6, 70%, 34%);
     --white: hsl(0, 0%, 100%);
-    --very-dark-grayish-blue: hsl(221, 14%, 31%);
+    --key-text: hsl(221, 14%, 31%);
 }
 
 * {
@@ -20,7 +20,7 @@
 }
 
 body{
-    background-color: var(--very-dark-desaturated-blue);
+    background-color: var(--calc-body);
     font-family: 'Spartan', sans-serif;
     color: var(--white);
 }
@@ -31,7 +31,6 @@ body{
     justify-content: center;
     align-items: center;
     margin:0 30px;
-    border: 3px solid var(--light-grayish-orange);
 }
 
   
@@ -58,12 +57,11 @@ body{
 .calcScreen{
     width: 300px;
     height: 80px;
-    padding: 10px 10px;
+    padding: 8px;
     margin: 15px;
-    border-radius: 10px;
-    background-color: var(--very-dark-desaturated-blue);
+    border-radius: 8px;
+    background-color: var(--calc-screen);
     color: white;
-    border: 1px solid var(--light-grayish-orange);
 }
 
 .calcScreen p{
@@ -89,9 +87,9 @@ body{
     justify-content: space-between;
     width: 300px;
     height: 250px;
-    background-color: var(--very-dark-desaturated-blue);
-    padding: 15px;
-    border-radius: 10px;
+    background-color: var(--calc-table);
+    padding: 8px;
+    border-radius: 8px;
 }
 
 .row{
@@ -103,35 +101,39 @@ body{
     width: 60px;
     height: 30px;
     border-radius: 5px;
-    background-color: var(--light-grayish-orange);
-    color: var( --very-dark-grayish-blue);
+    background-color: var(--key-background);
+    color: var( --key-text);
     font-weight: 700;
     font-size: 22px;
     margin: 8px;
     font-family: 'Spartan', sans-serif;
-    border: 1px solid var(--light-grayish-orange);
     padding-top: 6px;
-    box-shadow: 0 2px var(--grayish-orange);
+    box-shadow: 0 2px var(--key-background-shadow);
+    border:none;
 }
 
 button:active {
     transform: translateY(2px);
 }
 
-.delete{
-    background-color: var(--red);
-    color: var(--white);
+.equal{
+    background-color: var(--key-equal);
+    padding: 5px 65px 0 60px;
     font-size:16px;
+    box-shadow: 0 2px var(--key-equal-shadow);
+    color: var(--white);
 }
 
-.equal{
-    padding: 5px 65px 0 55px;
+.delete, .reset{
+    background-color: var(--key-remove);
+    color: var(--white);
+    box-shadow: 0 2px var(--key-remove-shadow);
     font-size:16px;
+    
 }
 
 .reset{
-    padding: 5px 90px 0 30px;
-    font-size:16px;
+    padding: 5px 90px 0 40px;
     margin-left:7px;  
 }
 
